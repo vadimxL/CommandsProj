@@ -41,7 +41,7 @@ namespace Commands
             }
 
 
-            Form1 form1 = new Form1();
+            Commands form1 = new Commands();
 
             form1.SetCmdNameComboBox(ref cmds);
 

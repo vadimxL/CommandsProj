@@ -5,11 +5,11 @@ using System.Windows.Forms;
 
 namespace Commands
 {
-    public partial class Form1 : Form
+    public partial class Commands : Form
     {
         private Command cmd =  new Command();
 
-        public Form1()
+        public Commands()
         {
             InitializeComponent();
         }
@@ -45,44 +45,42 @@ namespace Commands
             KeyValuePair<string, Command> selectedEntry
                 = (KeyValuePair<string, Command>)cmdNameComboBox.SelectedItem;
 
-            string tmpStr = selectedEntry.Value.Serialize();
-
-            //MessageBox.Show(tmpStr);
-
             funcTextBox.Text = selectedEntry.Value.GetFunc();
 
             string units = selectedEntry.Value.GetUnits();
 
-            if (units == "s8_Units_Pos")
-            {
-                unitsCmboBox.SelectedIndex = 0;
-            }
-            else if (units == "s8_Units_Analog_IO")
-            {
-                unitsCmboBox.SelectedIndex = 1;
-            }
-            else if (units == "s8_Units_Vel_Out_Loop_Scale")
-            {
-                unitsCmboBox.SelectedIndex = 2;
-            }
-            else
-            {
-                unitsCmboBox.SelectedIndex = 3;
-            }
+            if (units == "s8_Units_Pos") unitsCmboBox.SelectedIndex = 0;
+            else if (units == "s8_Units_Analog_IO") unitsCmboBox.SelectedIndex = 1;
+            else if (units == "s8_Units_Vel_Out_Loop_Scale") unitsCmboBox.SelectedIndex = 2;
+            else unitsCmboBox.SelectedIndex = 3;
 
-            int[] args = selectedEntry.Value.GetArgs();
+            FillArgsComboBox(selectedEntry.Value); // Fill additional args
+            ReadCommandArguments(selectedEntry.Value); // Read Arguments
+        }
 
-            Args1ComboBox.SelectedIndex = args[0];
-            Args2ComboBox.SelectedIndex = args[1];
-            Args3ComboBox.SelectedIndex = args[2];
-            Args4ComboBox.SelectedIndex = args[3];
-            Args5ComboBox.SelectedIndex = args[4];
-            Args6ComboBox.SelectedIndex = args[5];
-            Args7ComboBox.SelectedIndex = args[6];
-            Args8ComboBox.SelectedIndex = args[7];
-            Args9ComboBox.SelectedIndex = args[8];
-            Args10ComboBox.SelectedIndex = args[9];
-            Args11ComboBox.SelectedIndex = args[10];
+        private void FillArgsComboBox(Command cmd)
+        {
+            string[] args = cmd.GetArgs();
+            Args1ComboBox.SelectedIndex = int.Parse(args[0]);
+            Args2ComboBox.SelectedIndex = int.Parse(args[1]);
+            Args3ComboBox.SelectedIndex = int.Parse(args[2]);
+            Args4ComboBox.SelectedIndex = int.Parse(args[3]);
+            Args5ComboBox.SelectedIndex = int.Parse(args[4]);
+            Args6ComboBox.SelectedIndex = int.Parse(args[5]);
+            Args7ComboBox.SelectedIndex = int.Parse(args[6]);
+            Args8ComboBox.SelectedIndex = int.Parse(args[7]);
+            Args9ComboBox.SelectedIndex = int.Parse(args[8]);
+            Args10ComboBox.SelectedIndex = int.Parse(args[9]);
+            Args11ComboBox.SelectedIndex = int.Parse(args[10]);
+        }
+
+        private void ReadCommandArguments(Command cmd)
+        {
+            // Read Arguments
+            MinReadTextBox.Text = cmd.GetMinReadVal();
+            MaxReadTextBox.Text = cmd.GetMaxReadVal();
+            ReadAccessTextBox.Text = cmd.GetReadAccess();
+            ReadMethodComboBox.SelectedIndex = cmd.GetReadMethod();
         }
 
         private void cmdNameComboBox_TextUpdated(Object sender, EventArgs e)
@@ -136,6 +134,14 @@ namespace Commands
         private void label13_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void SerializeBtn_Click(object sender, EventArgs e)
+        {
+            // get selected KVP
+            KeyValuePair<string, Command> selectedEntry
+                = (KeyValuePair<string, Command>)cmdNameComboBox.SelectedItem;
+            MessageBox.Show(selectedEntry.Value.Serialize());
         }
     }
 }

@@ -77,28 +77,27 @@ namespace Commands
         // read
         private string readAccess;
         private string readMethod;
-        private int argsReadMin;
-        private int argsReadMax;
+        private string argsReadMin;
+        private string argsReadMax;
 
+        // Cmd type
         private string commandType;
 
         // write
         private string writeAccess;
         private string writeMethod;
-        private int argsWriteMin;
-        private int argsWriteMax;
+        private string argsWriteMin;
+        private string argsWriteMax;
 
         private string retTypeSign; // 0 - Unsigned, Signed
         private string retTypeSize; //
 
-        internal int[] GetArgs()
+        internal string[] GetArgs()
         {
             return this.args;
         }
 
-        private int[] args; // 0 - 14
-
-        private string[] words;
+        private string[] args = new string[15]; // 0 - 14
 
         public string GetFunc()
         {
@@ -110,61 +109,62 @@ namespace Commands
             // Default constructor
         }
 
+        // Contstructor from array of strings
         public Command(string[] words)
         {
-            this.words = words;
+            //this.words = words;
 
-            name = words[(int)CmdLabels.NAME]; // String
-            func = words[(int)CmdLabels.FUNC]; // String
-            units = words[(int)CmdLabels.UNITS];
+            this.name = words[(int)CmdLabels.NAME]; // 1
+            this.func = words[(int)CmdLabels.FUNC]; // 2
+            this.units = words[(int)CmdLabels.UNITS]; // 3
+
             // read
+            this.readAccess = words[(int)CmdLabels.READ_ACCESS]; // 4
+            this.readMethod = words[(int)CmdLabels.READ_METHOD]; // 5
+            this.argsReadMin = words[(int)CmdLabels.MIN_ARGS_FOR_READ]; // 6
+            this.argsReadMax = words[(int)CmdLabels.MAX_ARGS_FOR_READ]; // 7
+            this.readMethod = words[(int)CmdLabels.READ_METHOD];
 
-            
-            readAccess = words[(int)CmdLabels.READ_ACCESS];
-            readMethod = words[(int)CmdLabels.READ_METHOD];
-
-            if (!string.IsNullOrEmpty(words[(int)CmdLabels.MIN_ARGS_FOR_READ]))
-            {
-                argsReadMin = int.Parse(words[(int)CmdLabels.MIN_ARGS_FOR_READ]);
-            }
-            
-            if(!string.IsNullOrEmpty(words[(int)CmdLabels.MAX_ARGS_FOR_READ]))
-            {
-                argsReadMax = int.Parse(words[(int)CmdLabels.MAX_ARGS_FOR_READ]);
-            }
-            readMethod = words[(int)CmdLabels.READ_METHOD];
-
-            commandType = words[(int)CmdLabels.COMMAND_TYPE];
+            // Cmd type
+            this.commandType = words[(int)CmdLabels.COMMAND_TYPE]; // 8
 
             // write
-            writeAccess = words[(int)CmdLabels.WRITE_ACCESS];
-            writeMethod = words[(int)CmdLabels.WRITE_METHOD];
-            if (!string.IsNullOrEmpty(words[(int)CmdLabels.MIN_ARGS_FOR_WRITE]))
-            {
-                argsWriteMin = int.Parse(words[(int)CmdLabels.MIN_ARGS_FOR_WRITE]);
-            }
-            if (!string.IsNullOrEmpty(words[(int)CmdLabels.MAX_ARGS_FOR_WRITE]))
-            {
-                argsWriteMax = int.Parse(words[(int)CmdLabels.MAX_ARGS_FOR_WRITE]);
-            }
+            this.writeAccess = words[(int)CmdLabels.WRITE_ACCESS]; // 9
+            this.writeMethod = words[(int)CmdLabels.WRITE_METHOD]; // 10
+            this.argsWriteMin = words[(int)CmdLabels.MIN_ARGS_FOR_WRITE]; // 11
+            this.argsWriteMax = words[(int)CmdLabels.MAX_ARGS_FOR_WRITE]; // 12
 
             // return value
-            retTypeSign = words[(int)CmdLabels.RETURN_TYPE_SIGN];
-            retTypeSize = words[(int)CmdLabels.RETURN_TYPE_SIZE];
+            this.retTypeSign = words[(int)CmdLabels.RETURN_TYPE_SIGN]; // 13
+            this.retTypeSize = words[(int)CmdLabels.RETURN_TYPE_SIZE]; // 14
 
-            args = new int[15];
+            //args 15 - 30
+            int count = args.Count();
+            for(int i = 0; i < count; ++i)
+                args[i] = words[i + (int)CmdLabels.ARG1];
 
-            for (int i = (int)CmdLabels.ARG1, k = 0; i <= (int)CmdLabels.ARG15;k++, i++)
-            {
-                if ( !string.IsNullOrEmpty(words[i]) )
-                {
-                    args[k] = int.Parse(words[i]);
-                }
-                else
-                {
-                    args[k] = 0;
-                }
-            }
+        }
+
+        public Command(Command cmd)
+        {
+            this.name = cmd.name;
+            this.func = cmd.func;
+            this.units = cmd.units;
+
+            // Read
+            this.readAccess = cmd.readAccess;
+            this.readMethod = cmd.readMethod;
+            this.argsReadMin = cmd.argsReadMin;
+            this.argsReadMax = cmd.argsReadMax;
+
+            // Command type
+            this.commandType = cmd.commandType;
+
+            // Write
+            this.writeAccess = cmd.writeAccess;
+            this.writeMethod = cmd.writeMethod;
+            this.argsWriteMin = cmd.argsWriteMin;
+            this.argsWriteMax = cmd.argsWriteMax;
         }
 
         public string Serialize()
@@ -188,6 +188,35 @@ namespace Commands
         internal string GetName()
         {
             return this.name;
+        }
+
+        internal string GetMinReadVal()
+        {
+            return this.argsReadMin;
+        }
+
+        internal string GetMaxReadVal()
+        {
+            return this.argsReadMax;
+        }
+
+        internal int GetReadMethod()
+        {
+            int retVal = 0;
+            if (this.readMethod == "RD_DPTR") retVal = 0;
+            if (this.readMethod == "RD_FPTR0") retVal = 1;
+            if (this.readMethod == "RD_FPTR1") retVal = 2;
+            if (this.readMethod == "RD_FPTR2") retVal = 3;
+            if (this.readMethod == "RD_FCUST0") retVal = 4;
+            if (this.readMethod == "RD_FCUST1") retVal = 5;
+            if (this.readMethod == "RD_FCUST2") retVal = 6;
+
+            return retVal;
+        }
+
+        internal string GetReadAccess()
+        {
+            return readAccess;
         }
     }
 }
