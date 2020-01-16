@@ -145,7 +145,7 @@ namespace Commands
 
         }
 
-        public Command(Command cmd)
+        public void CopyTo(Command cmd)
         {
             this.name = cmd.name;
             this.func = cmd.func;
@@ -165,6 +165,14 @@ namespace Commands
             this.writeMethod = cmd.writeMethod;
             this.argsWriteMin = cmd.argsWriteMin;
             this.argsWriteMax = cmd.argsWriteMax;
+
+            //args 15 - 30
+            cmd.args.CopyTo(this.args, 0);
+        }
+
+        public Command(Command cmd)
+        {
+            cmd.CopyTo(this);
         }
 
         public string Serialize()

@@ -58,20 +58,26 @@ namespace Commands
             ReadCommandArguments(selectedEntry.Value); // Read Arguments
         }
 
+        public static int ToInt(string str)
+        {
+            if (str == "") return 0;
+            return int.Parse(str);
+        }
+
         private void FillArgsComboBox(Command cmd)
         {
             string[] args = cmd.GetArgs();
-            Args1ComboBox.SelectedIndex = int.Parse(args[0]);
-            Args2ComboBox.SelectedIndex = int.Parse(args[1]);
-            Args3ComboBox.SelectedIndex = int.Parse(args[2]);
-            Args4ComboBox.SelectedIndex = int.Parse(args[3]);
-            Args5ComboBox.SelectedIndex = int.Parse(args[4]);
-            Args6ComboBox.SelectedIndex = int.Parse(args[5]);
-            Args7ComboBox.SelectedIndex = int.Parse(args[6]);
-            Args8ComboBox.SelectedIndex = int.Parse(args[7]);
-            Args9ComboBox.SelectedIndex = int.Parse(args[8]);
-            Args10ComboBox.SelectedIndex = int.Parse(args[9]);
-            Args11ComboBox.SelectedIndex = int.Parse(args[10]);
+            Args1ComboBox.SelectedIndex = ToInt(args[0]);
+            Args2ComboBox.SelectedIndex = ToInt(args[1]);
+            Args3ComboBox.SelectedIndex = ToInt(args[3]);
+            Args4ComboBox.SelectedIndex = ToInt(args[4]);
+            Args5ComboBox.SelectedIndex = ToInt(args[5]);
+            Args6ComboBox.SelectedIndex = ToInt(args[6]);
+            Args7ComboBox.SelectedIndex = ToInt(args[7]);
+            Args8ComboBox.SelectedIndex = ToInt(args[8]);
+            Args9ComboBox.SelectedIndex = ToInt(args[9]);
+            Args10ComboBox.SelectedIndex = ToInt(args[10]);
+            Args11ComboBox.SelectedIndex = ToInt(args[11]);
         }
 
         private void ReadCommandArguments(Command cmd)
