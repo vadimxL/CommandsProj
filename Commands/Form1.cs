@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Windows.Forms;
 
 
@@ -7,19 +8,22 @@ namespace Commands
 {
     public partial class Commands : Form
     {
+        // A copy of Command
         private Command cmd =  new Command();
+        // Create a new sorted dictionary of strings, with string keys
+        SortedDictionary<string, Command> cmdsDict = new SortedDictionary<string, Command>();
 
         public Commands()
         {
             InitializeComponent();
         }
 
-        public void SetCmdNameComboBox(ref SortedDictionary<string, Command> cmds)
-        {
-            cmdNameComboBox.DataSource = new BindingSource(cmds, null);
-            cmdNameComboBox.DisplayMember = "Key";
-            cmdNameComboBox.ValueMember = "Value";
-        }
+        //public void SetCmdNameComboBox(ref SortedDictionary<string, Command> cmds)
+        //{
+        //    cmdNameComboBox.DataSource = new BindingSource(cmds, null);
+        //    cmdNameComboBox.DisplayMember = "Key";
+        //    cmdNameComboBox.ValueMember = "Value";
+        //}
 
         private void readMethodcomboBox_SelectedIndexChanged(object sender, System.EventArgs e)
         {
@@ -155,9 +159,38 @@ namespace Commands
         private void SerializeBtn_Click(object sender, EventArgs e)
         {
             // get selected KVP
-            KeyValuePair<string, Command> selectedEntry
-                = (KeyValuePair<string, Command>)cmdNameComboBox.SelectedItem;
-            MessageBox.Show(selectedEntry.Value.Serialize());
+            //KeyValuePair<string, Command> selectedEntry
+            //= (KeyValuePair<string, Command>)cmdNameComboBox.SelectedItem;
+            //MessageBox.Show(selectedEntry.Value.Serialize());
+
+            using (StreamWriter file = new StreamWriter("myfile.txt"))
+                foreach (var entry in cmdsDict)
+                    file.WriteLine("[{0}]", entry.Value.SerializeForSrcFile());
+        }
+
+        private void openCommandstxtToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OpenCmdsTxtFileDialog.ShowDialog();
+            string path = OpenCmdsTxtFileDialog.FileName;
+
+            //Default file. MAKE SURE TO CHANGE THIS LOCATION AND FILE PATH TO YOUR FILE 
+                // Read a text file line by line.
+            string[] lines = File.ReadAllLines(path);
+            char delimiter = ',';
+
+            foreach (string line in lines)
+            {
+                // Add some elements to the dictionary. There are no 
+                // duplicate keys, but some of the values are duplicates.
+                string[] words = line.Split(delimiter);
+                Command cmd = new Command(words);
+                cmdsDict.Add(words[0], cmd);
+
+            }
+
+            cmdNameComboBox.DataSource = new BindingSource(cmdsDict, null);
+            cmdNameComboBox.DisplayMember = "Key";
+            cmdNameComboBox.ValueMember = "Value";
         }
     }
 }

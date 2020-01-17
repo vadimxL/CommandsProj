@@ -183,6 +183,75 @@ namespace Commands
             return str;
         }
 
+        public string SerializeForSrcFile()
+        {
+            string str = GetMnemonicForSrc(); ; // Name/Mnemonic
+            str += GetUnitsForSrc(); // Units
+            str += GetReadWriteMethodsForSrc(); // Read & Write Methods
+            str += GetAccessForSrc(this.readAccess, this.readMethod); // Read Access
+            str += GetAccessForSrc(this.writeAccess, this.writeMethod); // Write Access
+
+
+            return str;
+        }
+
+        private string GetMnemonicForSrc()
+        {
+            return "{ /* " + this.name;
+        }
+
+        private string GetUnitsForSrc()
+        {
+            if (this.units == "" || this.units == "NA")
+            {
+                return "NA, NA, ";
+            }
+            else if (this.units.Contains("_"))
+            {
+                return this.units + ", NA, ";
+            }
+            else
+            {
+                return "NA, " + "\"" + this.units + "\"" + ", ";
+            }
+        }
+
+        private string GetAccessForSrc(string access, string method)
+        {
+            string str = "";
+            if (access == "")
+            {
+                str += "NA, ";
+            }
+            else if (method == "RD_DPTR" || method == "WR_DPTR")
+            {
+                str += "&" + method + ", ";
+            }
+            else
+            {
+                str += method + ", ";
+            }
+
+            return str;
+
+        }
+
+        private string GetReadWriteMethodsForSrc()
+        {
+            string str = this.readMethod;
+            if (this.writeMethod != "" || this.writeMethod != "NA" &&
+                this.writeAccess != "" || this.writeAccess != "NA")
+            {
+                str += " | " + writeMethod + ", ";
+            }
+            else
+            {
+                str += ", ";
+            }
+
+            return str;
+        }
+
         internal string GetUnits()
         {
             return this.units;

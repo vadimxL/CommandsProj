@@ -90,6 +90,8 @@ namespace Commands
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.commandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SerializeBtn = new System.Windows.Forms.Button();
+            this.openCommandstxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.OpenCmdsTxtFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -635,7 +637,8 @@ namespace Commands
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.newCommandToolStripMenuItem});
+            this.newCommandToolStripMenuItem,
+            this.openCommandstxtToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(46, 24);
             this.fileToolStripMenuItem.Text = "File";
@@ -643,7 +646,7 @@ namespace Commands
             // newCommandToolStripMenuItem
             // 
             this.newCommandToolStripMenuItem.Name = "newCommandToolStripMenuItem";
-            this.newCommandToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
+            this.newCommandToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
             this.newCommandToolStripMenuItem.Text = "New Command";
             // 
             // SaveNewCmdBtn
@@ -773,6 +776,17 @@ namespace Commands
             this.SerializeBtn.UseVisualStyleBackColor = true;
             this.SerializeBtn.Click += new System.EventHandler(this.SerializeBtn_Click);
             // 
+            // openCommandstxtToolStripMenuItem
+            // 
+            this.openCommandstxtToolStripMenuItem.Name = "openCommandstxtToolStripMenuItem";
+            this.openCommandstxtToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.openCommandstxtToolStripMenuItem.Text = "Open Commands.txt";
+            this.openCommandstxtToolStripMenuItem.Click += new System.EventHandler(this.openCommandstxtToolStripMenuItem_Click);
+            // 
+            // OpenCmdsTxtFileDialog
+            // 
+            this.OpenCmdsTxtFileDialog.FileName = "OpenCmdsTxtFileDialog";
+            // 
             // Commands
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -870,6 +884,8 @@ namespace Commands
         private System.Windows.Forms.TextBox textBox8;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Button SerializeBtn;
+        private System.Windows.Forms.ToolStripMenuItem openCommandstxtToolStripMenuItem;
+        private System.Windows.Forms.OpenFileDialog OpenCmdsTxtFileDialog;
     }
 }
 
