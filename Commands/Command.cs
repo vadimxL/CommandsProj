@@ -208,23 +208,49 @@ namespace Commands
             return this.argsReadMax;
         }
 
+        internal string GetMinWriteVal()
+        {
+            return this.argsWriteMin;
+        }
+
+        internal string GetMaxWriteVal()
+        {
+            return this.argsWriteMax;
+        }
+
+        internal int GetWriteMethod()
+        {
+            int retVal = 0;
+            if (this.writeMethod == "WR_DPTR") retVal = 0; // Data pointer
+            if (this.writeMethod == "WR_FPTR0") retVal = 1; // int fname(long long param, int drive)
+            if (this.writeMethod == "WR_FPTR1") retVal = 2; // int fname(int drive) no arguments needed
+            if (this.writeMethod == "WR_FPTR2") retVal = 3; // int fname(long param1, long param2)
+            if (this.writeMethod == "WR_FCUST") retVal = 4; // int fname(int drive), args via s64_Execution_Parameter[]
+            if (this.writeMethod == "WR_FCUST0") retVal = 5; // int fname(void), both axes, args via s64_Execution_Parameter[]
+            if (this.writeMethod == "WR_FCUST1") retVal = 6; // int fname(int drive), unit conversion only for the 2nd argument
+            return retVal;
+        }
+
         internal int GetReadMethod()
         {
             int retVal = 0;
-            if (this.readMethod == "RD_DPTR") retVal = 0;
-            if (this.readMethod == "RD_FPTR0") retVal = 1;
-            if (this.readMethod == "RD_FPTR1") retVal = 2;
-            if (this.readMethod == "RD_FPTR2") retVal = 3;
-            if (this.readMethod == "RD_FCUST0") retVal = 4;
-            if (this.readMethod == "RD_FCUST1") retVal = 5;
-            if (this.readMethod == "RD_FCUST2") retVal = 6;
-
+            if (this.readMethod == "RD_DPTR") retVal = 0; // Read via data pointer
+            if (this.readMethod == "RD_FPTR0") retVal = 1; // int fname(int* data, int drive)
+            if (this.readMethod == "RD_FPTR1") retVal = 2; // int fname(int drive) no arguments needed
+            if (this.readMethod == "RD_FCUST") retVal = 3; // int fname(int drive), arguments via s64_Execution_Parameter[]
+            if (this.readMethod == "RD_FCUST0") retVal = 4; // int fname(void), both axes, args via s64_Execution_Parameter[]
+            if (this.readMethod == "RD_FPTR2") retVal = 5; // int fname(int* data), both axes
             return retVal;
         }
 
         internal string GetReadAccess()
         {
-            return readAccess;
+            return this.readAccess;
+        }
+
+        internal string GetWriteAccess()
+        {
+            return this.writeAccess;
         }
     }
 }

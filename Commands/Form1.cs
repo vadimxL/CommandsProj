@@ -55,7 +55,8 @@ namespace Commands
             else unitsCmboBox.SelectedIndex = 3;
 
             FillArgsComboBox(selectedEntry.Value); // Fill additional args
-            ReadCommandArguments(selectedEntry.Value); // Read Arguments
+            FillReadCmdArgs(selectedEntry.Value); // Read Arguments fill
+            FillWriteCmdArgs(selectedEntry.Value); // Write Arguments fill
         }
 
         public static int ToInt(string str)
@@ -80,13 +81,22 @@ namespace Commands
             Args11ComboBox.SelectedIndex = ToInt(args[11]);
         }
 
-        private void ReadCommandArguments(Command cmd)
+        private void FillReadCmdArgs(Command cmd)
         {
             // Read Arguments
             MinReadTextBox.Text = cmd.GetMinReadVal();
             MaxReadTextBox.Text = cmd.GetMaxReadVal();
             ReadAccessTextBox.Text = cmd.GetReadAccess();
             ReadMethodComboBox.SelectedIndex = cmd.GetReadMethod();
+        }
+
+        private void FillWriteCmdArgs(Command cmd)
+        {
+            // Read Arguments
+            MinWriteTextBox.Text = cmd.GetMinWriteVal();
+            MaxWriteTextBox.Text = cmd.GetMaxWriteVal();
+            WriteAccessTextBox.Text = cmd.GetWriteAccess();
+            WriteMethodComboBox.SelectedIndex = cmd.GetWriteMethod();
         }
 
         private void cmdNameComboBox_TextUpdated(Object sender, EventArgs e)

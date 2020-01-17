@@ -53,14 +53,14 @@ namespace Commands
             this.MinReadTextBox = new System.Windows.Forms.TextBox();
             this.ArgsLabel = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
-            this.comboBox3 = new System.Windows.Forms.ComboBox();
+            this.WriteMethodComboBox = new System.Windows.Forms.ComboBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.textBox5 = new System.Windows.Forms.TextBox();
+            this.WriteAccessTextBox = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox6 = new System.Windows.Forms.TextBox();
+            this.MaxWriteTextBox = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
-            this.textBox7 = new System.Windows.Forms.TextBox();
+            this.MinWriteTextBox = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.Args11ComboBox = new System.Windows.Forms.ComboBox();
@@ -243,13 +243,12 @@ namespace Commands
             // 
             this.ReadMethodComboBox.FormattingEnabled = true;
             this.ReadMethodComboBox.Items.AddRange(new object[] {
-            "RD_DPTR",
-            "RD_FPTR0",
-            "RD_FPTR1",
-            "RD_FPTR2",
-            "RD_FCUST0",
-            "RD_FCUST1",
-            "RD_FCUST2"});
+            "Variable",
+            "int f(int*)",
+            "int f(void)",
+            "int f(void) + Args",
+            "int f(void) + Args, Both Axes",
+            "int f(int*), Both Axes"});
             this.ReadMethodComboBox.Location = new System.Drawing.Point(92, 114);
             this.ReadMethodComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.ReadMethodComboBox.Name = "ReadMethodComboBox";
@@ -336,14 +335,14 @@ namespace Commands
             // 
             // groupBox4
             // 
-            this.groupBox4.Controls.Add(this.comboBox3);
+            this.groupBox4.Controls.Add(this.WriteMethodComboBox);
             this.groupBox4.Controls.Add(this.label8);
-            this.groupBox4.Controls.Add(this.textBox5);
+            this.groupBox4.Controls.Add(this.WriteAccessTextBox);
             this.groupBox4.Controls.Add(this.label9);
             this.groupBox4.Controls.Add(this.label10);
-            this.groupBox4.Controls.Add(this.textBox6);
+            this.groupBox4.Controls.Add(this.MaxWriteTextBox);
             this.groupBox4.Controls.Add(this.label11);
-            this.groupBox4.Controls.Add(this.textBox7);
+            this.groupBox4.Controls.Add(this.MinWriteTextBox);
             this.groupBox4.Controls.Add(this.label12);
             this.groupBox4.Location = new System.Drawing.Point(27, 321);
             this.groupBox4.Margin = new System.Windows.Forms.Padding(4);
@@ -354,10 +353,10 @@ namespace Commands
             this.groupBox4.TabStop = false;
             this.groupBox4.Text = "Write";
             // 
-            // comboBox3
+            // WriteMethodComboBox
             // 
-            this.comboBox3.FormattingEnabled = true;
-            this.comboBox3.Items.AddRange(new object[] {
+            this.WriteMethodComboBox.FormattingEnabled = true;
+            this.WriteMethodComboBox.Items.AddRange(new object[] {
             "WR_DPTR",
             "WR_FPTR0",
             "WR_FPTR1",
@@ -365,11 +364,11 @@ namespace Commands
             "WR_FCUST0",
             "WR_FCUST1",
             "WR_FCUST2"});
-            this.comboBox3.Location = new System.Drawing.Point(92, 114);
-            this.comboBox3.Margin = new System.Windows.Forms.Padding(4);
-            this.comboBox3.Name = "comboBox3";
-            this.comboBox3.Size = new System.Drawing.Size(208, 24);
-            this.comboBox3.TabIndex = 6;
+            this.WriteMethodComboBox.Location = new System.Drawing.Point(92, 114);
+            this.WriteMethodComboBox.Margin = new System.Windows.Forms.Padding(4);
+            this.WriteMethodComboBox.Name = "WriteMethodComboBox";
+            this.WriteMethodComboBox.Size = new System.Drawing.Size(208, 24);
+            this.WriteMethodComboBox.TabIndex = 6;
             // 
             // label8
             // 
@@ -381,13 +380,13 @@ namespace Commands
             this.label8.TabIndex = 12;
             this.label8.Text = "Method";
             // 
-            // textBox5
+            // WriteAccessTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(91, 71);
-            this.textBox5.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(209, 22);
-            this.textBox5.TabIndex = 11;
+            this.WriteAccessTextBox.Location = new System.Drawing.Point(91, 71);
+            this.WriteAccessTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.WriteAccessTextBox.Name = "WriteAccessTextBox";
+            this.WriteAccessTextBox.Size = new System.Drawing.Size(209, 22);
+            this.WriteAccessTextBox.TabIndex = 11;
             // 
             // label9
             // 
@@ -409,13 +408,13 @@ namespace Commands
             this.label10.TabIndex = 9;
             this.label10.Text = "Min";
             // 
-            // textBox6
+            // MaxWriteTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(236, 30);
-            this.textBox6.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(64, 22);
-            this.textBox6.TabIndex = 8;
+            this.MaxWriteTextBox.Location = new System.Drawing.Point(236, 30);
+            this.MaxWriteTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.MaxWriteTextBox.Name = "MaxWriteTextBox";
+            this.MaxWriteTextBox.Size = new System.Drawing.Size(64, 22);
+            this.MaxWriteTextBox.TabIndex = 8;
             // 
             // label11
             // 
@@ -427,13 +426,13 @@ namespace Commands
             this.label11.TabIndex = 7;
             this.label11.Text = "Max";
             // 
-            // textBox7
+            // MinWriteTextBox
             // 
-            this.textBox7.Location = new System.Drawing.Point(119, 30);
-            this.textBox7.Margin = new System.Windows.Forms.Padding(4);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(64, 22);
-            this.textBox7.TabIndex = 6;
+            this.MinWriteTextBox.Location = new System.Drawing.Point(119, 30);
+            this.MinWriteTextBox.Margin = new System.Windows.Forms.Padding(4);
+            this.MinWriteTextBox.Name = "MinWriteTextBox";
+            this.MinWriteTextBox.Size = new System.Drawing.Size(64, 22);
+            this.MinWriteTextBox.TabIndex = 6;
             // 
             // label12
             // 
@@ -832,14 +831,14 @@ namespace Commands
         private System.Windows.Forms.Label ReadMethodLabel;
         private System.Windows.Forms.TextBox ReadAccessTextBox;
         private System.Windows.Forms.GroupBox groupBox4;
-        private System.Windows.Forms.ComboBox comboBox3;
+        private System.Windows.Forms.ComboBox WriteMethodComboBox;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox WriteAccessTextBox;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox6;
+        private System.Windows.Forms.TextBox MaxWriteTextBox;
         private System.Windows.Forms.Label label11;
-        private System.Windows.Forms.TextBox textBox7;
+        private System.Windows.Forms.TextBox MinWriteTextBox;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox5;
         private System.Windows.Forms.ComboBox cmdNameComboBox;
