@@ -121,7 +121,6 @@ namespace Commands
             this.BlockFlags.Name = "BlockFlags";
             this.BlockFlags.Size = new System.Drawing.Size(241, 174);
             this.BlockFlags.TabIndex = 0;
-            this.BlockFlags.SelectedIndexChanged += new System.EventHandler(this.BlockFlags_SelectedIndexChanged);
             // 
             // groupBox1
             // 
@@ -139,7 +138,6 @@ namespace Commands
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Misc";
-            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // cmdNameComboBox
             // 
@@ -195,7 +193,6 @@ namespace Commands
             this.label2.Size = new System.Drawing.Size(40, 17);
             this.label2.TabIndex = 3;
             this.label2.Text = "Units";
-            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // label1
             // 
@@ -206,7 +203,6 @@ namespace Commands
             this.label1.Size = new System.Drawing.Size(62, 17);
             this.label1.TabIndex = 2;
             this.label1.Text = "Function";
-            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox2
             // 
@@ -219,7 +215,6 @@ namespace Commands
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Block Flags";
-            this.groupBox2.Enter += new System.EventHandler(this.groupBox2_Enter);
             // 
             // groupBox3
             // 
@@ -285,7 +280,6 @@ namespace Commands
             this.AccessReadLabel.Size = new System.Drawing.Size(53, 17);
             this.AccessReadLabel.TabIndex = 10;
             this.AccessReadLabel.Text = "Access";
-            this.AccessReadLabel.Click += new System.EventHandler(this.label6_Click);
             // 
             // MinReadLabel
             // 
@@ -314,7 +308,6 @@ namespace Commands
             this.MaxReadLabel.Size = new System.Drawing.Size(33, 17);
             this.MaxReadLabel.TabIndex = 7;
             this.MaxReadLabel.Text = "Max";
-            this.MaxReadLabel.Click += new System.EventHandler(this.label4_Click);
             // 
             // MinReadTextBox
             // 
@@ -333,7 +326,6 @@ namespace Commands
             this.ArgsLabel.Size = new System.Drawing.Size(37, 17);
             this.ArgsLabel.TabIndex = 6;
             this.ArgsLabel.Text = "Args";
-            this.ArgsLabel.Click += new System.EventHandler(this.label3_Click);
             // 
             // groupBox4
             // 
@@ -509,7 +501,6 @@ namespace Commands
             this.Args9ComboBox.Name = "Args9ComboBox";
             this.Args9ComboBox.Size = new System.Drawing.Size(77, 24);
             this.Args9ComboBox.TabIndex = 8;
-            this.Args9ComboBox.SelectedIndexChanged += new System.EventHandler(this.comboBox9_SelectedIndexChanged);
             // 
             // Args8ComboBox
             // 
@@ -744,7 +735,6 @@ namespace Commands
             this.MinValueLabel.Size = new System.Drawing.Size(30, 17);
             this.MinValueLabel.TabIndex = 2;
             this.MinValueLabel.Text = "Min";
-            this.MinValueLabel.Click += new System.EventHandler(this.label13_Click);
             // 
             // textBox8
             // 

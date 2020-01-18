@@ -11,7 +11,7 @@ namespace Commands
         // A copy of Command
         private Command cmd =  new Command();
         // Create a new sorted dictionary of strings, with string keys
-        SortedDictionary<string, Command> cmdsDict = new SortedDictionary<string, Command>();
+        Dictionary<string, Command> cmdsDict = new Dictionary<string, Command>();
 
         public Commands()
         {
@@ -108,64 +108,39 @@ namespace Commands
             MessageBox.Show("You are in the ComboBox.TextUpdate event.");
         }
 
-
-        private void label6_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label4_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label3_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void groupBox2_Enter(object sender, EventArgs e)
-        {
-        }
-
         private void unitsComboBox_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-        }
-
-        private void BlockFlags_SelectedIndexChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void comboBox9_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label13_Click(object sender, EventArgs e)
         {
 
         }
 
         private void SerializeBtn_Click(object sender, EventArgs e)
         {
-            // get selected KVP
-            //KeyValuePair<string, Command> selectedEntry
-            //= (KeyValuePair<string, Command>)cmdNameComboBox.SelectedItem;
-            //MessageBox.Show(selectedEntry.Value.Serialize());
+        // get selected KVP
+        //KeyValuePair<string, Command> selectedEntry
+        //= (KeyValuePair<string, Command>)cmdNameComboBox.SelectedItem;
+        //MessageBox.Show(selectedEntry.Value.Serialize());
 
-            using (StreamWriter file = new StreamWriter("myfile.txt"))
-                foreach (var entry in cmdsDict)
-                    file.WriteLine("[{0}]", entry.Value.SerializeForSrcFile());
+            StreamWriter file = new StreamWriter("..\\..\\Drive_Table_2.def");
+
+            file.WriteLine("/*******************************************************************");
+            file.WriteLine("*                                                                  *");
+            file.WriteLine("*   Drive_Table.def                                                *");
+            file.WriteLine("*                                                                  *");
+            file.WriteLine("*   Do not modify this file directly                               *");
+            file.WriteLine("*   To update table, modify CDHD -Commands.xls and run the macro   *");
+            file.WriteLine("*                                                                  *");
+            file.WriteLine("*                                                                  *");
+            file.WriteLine("*******************************************************************/");
+            file.WriteLine("");
+            file.WriteLine("#define NA 0");
+            file.WriteLine("");
+            file.WriteLine("#define COMMANDS_TABLE \\");
+            file.WriteLine("{ \\");
+
+            foreach (var entry in cmdsDict)
+            {
+                file.WriteLine(entry.Value.SerializeForSrcFile());
+            }
         }
 
         private void openCommandstxtToolStripMenuItem_Click(object sender, EventArgs e)

@@ -195,9 +195,23 @@ namespace Commands
             return str;
         }
 
+
+        //// str - the source string
+        //// index- the start location to replace at (0-based)
+        //// length - the number of characters to be removed before inserting
+        //// replace - the string that is replacing characters
+        public string ReplaceAt(string str, int index, int length, string replace)
+        {
+            return str.Remove(index, Math.Min(length, str.Length - index))
+                    .Insert(index, replace);
+        }
+
         private string GetMnemonicForSrc()
         {
-            return "{ /* " + this.name;
+            string str = new string(' ', 20);
+            str += "*/ ";
+            str = ReplaceAt(str, 0, "{ /* ".Length + this.name.Length, "{ /* " + this.name);
+            return str;
         }
 
         private string GetUnitsForSrc()
@@ -225,11 +239,11 @@ namespace Commands
             }
             else if (method == "RD_DPTR" || method == "WR_DPTR")
             {
-                str += "&" + method + ", ";
+                str += "&" + access + ", ";
             }
             else
             {
-                str += method + ", ";
+                str += access + ", ";
             }
 
             return str;
@@ -239,8 +253,8 @@ namespace Commands
         private string GetReadWriteMethodsForSrc()
         {
             string str = this.readMethod;
-            if (this.writeMethod != "" || this.writeMethod != "NA" &&
-                this.writeAccess != "" || this.writeAccess != "NA")
+            if (this.writeMethod != "" && this.writeMethod != "NA" &&
+                this.writeAccess != "" && this.writeAccess != "NA")
             {
                 str += " | " + writeMethod + ", ";
             }
