@@ -966,14 +966,4 @@
 { /* P_CAN_TPDO3_MAP5/ NA, NA, RD_DPTR | WR_DPTR, &u32_Tpdo3_Mapping5, &u32_Tpdo3_Mapping5, 
 { /* P_CAN_TPDO3_MAP6/ NA, NA, RD_DPTR | WR_DPTR, &u32_Tpdo3_Mapping6, &u32_Tpdo3_Mapping6, 
 { /* P_CAN_TPDO4_COBID NA, NA, RD_DPTR | WR_DPTR, &u32_Tpdo4_CobId, &u32_Tpdo4_CobId, 
-{ /* P_CAN_TPDO4_TRANSMISSION_TYPENA, NA, RD_DPTR | WR_DPTR, &u8_Tpdo4_Transmission_Type, &u8_Tpdo4_Transmission_Type, 
-{ /* P_CAN_TPDO4_INHIBIT_TIMENA, NA, RD_DPTR | WR_DPTR, &u16_Tpdo4_Inhibit_Time, &u16_Tpdo4_Inhibit_Time, 
-{ /* P_CAN_TPDO4_EVENT_TIMERNA, NA, RD_DPTR | WR_DPTR, &u16_Tpdo4_Event_Timer, &u16_Tpdo4_Event_Timer, 
-{ /* P_CAN_TPDO4_NUM_MAPPINGNA, NA, RD_DPTR | WR_DPTR, &u8_Tpdo4_NumMapping, &u8_Tpdo4_NumMapping, 
-{ /* P_CAN_TPDO4_MAP1/ NA, NA, RD_DPTR | WR_DPTR, &u32_Tpdo4_Mapping1, &u32_Tpdo4_Mapping1, 
-{ /* P_CAN_TPDO4_MAP2/ NA, NA, RD_DPTR | WR_DPTR, &u32_Tpdo4_Mapping2, &u32_Tpdo4_Mapping2, 
-{ /* P_CAN_TPDO4_MAP3/ NA, NA, RD_DPTR | WR_DPTR, &u32_Tpdo4_Mapping3, &u32_Tpdo4_Mapping3, 
-{ /* P_CAN_TPDO4_MAP4/ NA, NA, RD_DPTR | WR_DPTR, &u32_Tpdo4_Mapping4, &u32_Tpdo4_Mapping4, 
-{ /* P_CAN_TPDO4_MAP5/ NA, NA, RD_DPTR | WR_DPTR, &u32_Tpdo4_Mapping5, &u32_Tpdo4_Mapping5, 
-{ /* P_CAN_TPDO4_MAP6/ NA, NA, RD_DPTR | WR_DPTR, &u32_Tpdo4_Mapping6, &u32_Tpdo4_Mapping6, 
-{ /* P_CAN_SERIAL_MAP_OVWRNA, NA, RD_DPT
+{ /* P_CAN_TPDO

@@ -77,6 +77,7 @@ namespace Commands
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.newCommandToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openCommandstxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.SaveNewCmdBtn = new System.Windows.Forms.Button();
             this.SaveBtn = new System.Windows.Forms.Button();
             this.ValueGroup = new System.Windows.Forms.GroupBox();
@@ -90,7 +91,6 @@ namespace Commands
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.commandBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.SerializeBtn = new System.Windows.Forms.Button();
-            this.openCommandstxtToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.OpenCmdsTxtFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -119,7 +119,7 @@ namespace Commands
             this.BlockFlags.Location = new System.Drawing.Point(16, 20);
             this.BlockFlags.Margin = new System.Windows.Forms.Padding(4);
             this.BlockFlags.Name = "BlockFlags";
-            this.BlockFlags.Size = new System.Drawing.Size(241, 174);
+            this.BlockFlags.Size = new System.Drawing.Size(241, 225);
             this.BlockFlags.TabIndex = 0;
             // 
             // groupBox1
@@ -211,7 +211,7 @@ namespace Commands
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox2.Size = new System.Drawing.Size(275, 224);
+            this.groupBox2.Size = new System.Drawing.Size(275, 259);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Block Flags";
@@ -246,29 +246,28 @@ namespace Commands
             "int f(void) + Args",
             "int f(void) + Args, Both Axes",
             "int f(int*), Both Axes"});
-            this.ReadMethodComboBox.Location = new System.Drawing.Point(92, 114);
+            this.ReadMethodComboBox.Location = new System.Drawing.Point(90, 100);
             this.ReadMethodComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.ReadMethodComboBox.Name = "ReadMethodComboBox";
-            this.ReadMethodComboBox.Size = new System.Drawing.Size(208, 24);
+            this.ReadMethodComboBox.Size = new System.Drawing.Size(210, 24);
             this.ReadMethodComboBox.TabIndex = 6;
-            this.ReadMethodComboBox.SelectedIndexChanged += new System.EventHandler(this.cmdNameComboBox_SelectedIndexChanged);
             // 
             // ReadMethodLabel
             // 
             this.ReadMethodLabel.AutoSize = true;
-            this.ReadMethodLabel.Location = new System.Drawing.Point(27, 118);
+            this.ReadMethodLabel.Location = new System.Drawing.Point(20, 100);
             this.ReadMethodLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.ReadMethodLabel.Name = "ReadMethodLabel";
-            this.ReadMethodLabel.Size = new System.Drawing.Size(55, 17);
+            this.ReadMethodLabel.Size = new System.Drawing.Size(69, 17);
             this.ReadMethodLabel.TabIndex = 12;
-            this.ReadMethodLabel.Text = "Method";
+            this.ReadMethodLabel.Text = "Signature";
             // 
             // ReadAccessTextBox
             // 
-            this.ReadAccessTextBox.Location = new System.Drawing.Point(91, 71);
+            this.ReadAccessTextBox.Location = new System.Drawing.Point(90, 70);
             this.ReadAccessTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.ReadAccessTextBox.Name = "ReadAccessTextBox";
-            this.ReadAccessTextBox.Size = new System.Drawing.Size(209, 22);
+            this.ReadAccessTextBox.Size = new System.Drawing.Size(210, 22);
             this.ReadAccessTextBox.TabIndex = 11;
             // 
             // AccessReadLabel
@@ -621,7 +620,7 @@ namespace Commands
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1067, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1047, 28);
             this.menuStrip1.TabIndex = 15;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -639,6 +638,13 @@ namespace Commands
             this.newCommandToolStripMenuItem.Name = "newCommandToolStripMenuItem";
             this.newCommandToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
             this.newCommandToolStripMenuItem.Text = "New Command";
+            // 
+            // openCommandstxtToolStripMenuItem
+            // 
+            this.openCommandstxtToolStripMenuItem.Name = "openCommandstxtToolStripMenuItem";
+            this.openCommandstxtToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
+            this.openCommandstxtToolStripMenuItem.Text = "Open Commands.txt";
+            this.openCommandstxtToolStripMenuItem.Click += new System.EventHandler(this.openCommandstxtToolStripMenuItem_Click);
             // 
             // SaveNewCmdBtn
             // 
@@ -754,7 +760,7 @@ namespace Commands
             // 
             // commandBindingSource
             // 
-            this.commandBindingSource.DataSource = typeof(Command);
+            this.commandBindingSource.DataSource = typeof(Commands.Command);
             // 
             // SerializeBtn
             // 
@@ -766,13 +772,6 @@ namespace Commands
             this.SerializeBtn.UseVisualStyleBackColor = true;
             this.SerializeBtn.Click += new System.EventHandler(this.SerializeBtn_Click);
             // 
-            // openCommandstxtToolStripMenuItem
-            // 
-            this.openCommandstxtToolStripMenuItem.Name = "openCommandstxtToolStripMenuItem";
-            this.openCommandstxtToolStripMenuItem.Size = new System.Drawing.Size(227, 26);
-            this.openCommandstxtToolStripMenuItem.Text = "Open Commands.txt";
-            this.openCommandstxtToolStripMenuItem.Click += new System.EventHandler(this.openCommandstxtToolStripMenuItem_Click);
-            // 
             // OpenCmdsTxtFileDialog
             // 
             this.OpenCmdsTxtFileDialog.FileName = "OpenCmdsTxtFileDialog";
@@ -781,7 +780,7 @@ namespace Commands
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(1047, 575);
             this.Controls.Add(this.SerializeBtn);
             this.Controls.Add(this.ValueGroup);
             this.Controls.Add(this.SaveBtn);
@@ -797,6 +796,7 @@ namespace Commands
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Commands";
             this.Text = "Commands";
+            this.Load += new System.EventHandler(this.Commands_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);

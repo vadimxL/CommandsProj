@@ -167,5 +167,10 @@ namespace Commands
             cmdNameComboBox.DisplayMember = "Key";
             cmdNameComboBox.ValueMember = "Value";
         }
+
+        private void Commands_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
