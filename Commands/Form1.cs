@@ -49,6 +49,8 @@ namespace Commands
             KeyValuePair<string, Command> selectedEntry
                 = (KeyValuePair<string, Command>)cmdNameComboBox.SelectedItem;
 
+            cmd = selectedEntry.Value;
+
             funcTextBox.Text = selectedEntry.Value.GetFunc();
 
             string units = selectedEntry.Value.GetUnits();
@@ -171,6 +173,22 @@ namespace Commands
         private void Commands_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void btnShowCmdDataGrid_Click(object sender, EventArgs e)
+        {
+            dataGridCommands.Rows.Add(cmd.GetName());
+            dataGridCommands.Rows.Add(cmd.GetFunc());
+            dataGridCommands.Rows.Add(cmd.GetUnits());
+            dataGridCommands.Rows.Add(cmd.GetMinReadVal());
+            dataGridCommands.Rows.Add(cmd.GetMaxReadVal());
+            dataGridCommands.Rows.Add(cmd.GetReadAccess());
+            dataGridCommands.Rows.Add(cmd.GetReadMethod());
         }
     }
 }
