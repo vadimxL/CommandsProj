@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.IO;
 using System.Windows.Forms;
 
@@ -87,12 +88,58 @@ namespace Commands
             Args11ComboBox.SelectedIndex = ToInt(args[11]);
         }
 
+
+        private void FillReadSignaturesComboBox(string signature)
+        {
+            string returnType = "int ";
+            string[] signatures = { signature
+                                    , returnType + signature + "(int*)"
+                                    , returnType + signature + "(int*)"
+                                    , returnType + signature + "(void) + Args"
+                                    , returnType + signature + "(void) + Args"
+                                    , returnType + signature + "(void) + Args + Both Axes"
+                                    , returnType + signature + "(int *) + Both Axes" };
+
+            ReadMethodComboBox.Items.AddRange(signatures);
+            ReadMethodComboBox.SelectedIndex = 0;
+        }
+
+
+        private void FillWriteSignaturesComboBox(string signature)
+        {
+
+/*          Servotronix:
+            Specifies the prototype of the writing function where:
+            WR_DPTR - Write via data pointer
+            WR_FPTR0 - Write via int fname(long long param, int drive)
+            WR_FPTR1 - Write via int fname(int drive) no arguments needed
+            WR_FPTR2 - Write via int fname(long param1, long param2)
+            WR_FCUST - Write via int fname(int drive), arguments via s64_Execution_Parameter[]
+            WR_FCUST0 - Write via int fname(void), shared with both axes, arguments via s64_Execution_Parameter[]
+            WR_FCUST1 - Write via int fname(int drive), handle unit conversion only for the 2nd argument*/
+
+
+            string returnType = "int ";
+            string[] signatures = { signature
+                                    , returnType + signature + "(int*)"
+                                    , returnType + signature + "(int*)"
+                                    , returnType + signature + "(void) + Args"
+                                    , returnType + signature + "(void) + Args"
+                                    , returnType + signature + "(void) + Args + Both Axes"
+                                    , returnType + signature + "(int *) + Both Axes" };
+
+            WriteMethodComboBox.Items.AddRange(signatures);
+            WriteMethodComboBox.SelectedIndex = 0;
+        }
+
+
         private void FillReadCmdArgs(Command cmd)
         {
             // Read Arguments
             MinReadTextBox.Text = cmd.GetMinReadVal();
             MaxReadTextBox.Text = cmd.GetMaxReadVal();
             ReadAccessTextBox.Text = cmd.GetReadAccess();
+            FillSignaturesComboBox(cmd); // Fill Read Signature ComboBox
             ReadMethodComboBox.SelectedIndex = cmd.GetReadMethod();
         }
 
@@ -182,13 +229,22 @@ namespace Commands
 
         private void btnShowCmdDataGrid_Click(object sender, EventArgs e)
         {
-            dataGridCommands.Rows.Add(cmd.GetName());
-            dataGridCommands.Rows.Add(cmd.GetFunc());
-            dataGridCommands.Rows.Add(cmd.GetUnits());
-            dataGridCommands.Rows.Add(cmd.GetMinReadVal());
-            dataGridCommands.Rows.Add(cmd.GetMaxReadVal());
-            dataGridCommands.Rows.Add(cmd.GetReadAccess());
-            dataGridCommands.Rows.Add(cmd.GetReadMethod());
+            dataGridCommands.Rows.Add(cmd.GetName(), cmd.GetFunc(), cmd.GetUnits());
+        }
+
+        private void dataGridCommands_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+ 
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AccessReadLabel_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

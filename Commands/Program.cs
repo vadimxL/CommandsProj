@@ -17,10 +17,16 @@ namespace Commands
         [STAThread]
         static void Main()
         {
-            Commands form1 = new Commands();
-            Application.Run(form1);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            Start();
         }
+
+        public static void Start()   // <-- must be marked public!
+        {
+            MessageBox.Show("Let's go!");
+            Application.Run(new Commands());
+        }
+
     }
 }

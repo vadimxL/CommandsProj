@@ -95,6 +95,9 @@ namespace Commands
             this.dataGridCommands = new System.Windows.Forms.DataGridView();
             this.btnShowCmdDataGrid = new System.Windows.Forms.Button();
             this.btnExit = new System.Windows.Forms.Button();
+            this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Column3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -195,9 +198,10 @@ namespace Commands
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(5, 43);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(48, 13);
+            this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Function";
+            this.label1.Text = "Category";
+            this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // groupBox2
             // 
@@ -230,14 +234,7 @@ namespace Commands
             // ReadMethodComboBox
             // 
             this.ReadMethodComboBox.FormattingEnabled = true;
-            this.ReadMethodComboBox.Items.AddRange(new object[] {
-            "Variable",
-            "int f(int*)",
-            "int f(void)",
-            "int f(void) + Args",
-            "int f(void) + Args, Both Axes",
-            "int f(int*), Both Axes"});
-            this.ReadMethodComboBox.Location = new System.Drawing.Point(68, 81);
+            this.ReadMethodComboBox.Location = new System.Drawing.Point(68, 83);
             this.ReadMethodComboBox.Name = "ReadMethodComboBox";
             this.ReadMethodComboBox.Size = new System.Drawing.Size(158, 21);
             this.ReadMethodComboBox.TabIndex = 6;
@@ -245,7 +242,7 @@ namespace Commands
             // ReadMethodLabel
             // 
             this.ReadMethodLabel.AutoSize = true;
-            this.ReadMethodLabel.Location = new System.Drawing.Point(15, 81);
+            this.ReadMethodLabel.Location = new System.Drawing.Point(15, 84);
             this.ReadMethodLabel.Name = "ReadMethodLabel";
             this.ReadMethodLabel.Size = new System.Drawing.Size(52, 13);
             this.ReadMethodLabel.TabIndex = 12;
@@ -263,9 +260,10 @@ namespace Commands
             this.AccessReadLabel.AutoSize = true;
             this.AccessReadLabel.Location = new System.Drawing.Point(20, 61);
             this.AccessReadLabel.Name = "AccessReadLabel";
-            this.AccessReadLabel.Size = new System.Drawing.Size(42, 13);
+            this.AccessReadLabel.Size = new System.Drawing.Size(35, 13);
             this.AccessReadLabel.TabIndex = 10;
-            this.AccessReadLabel.Text = "Access";
+            this.AccessReadLabel.Text = "Name";
+            this.AccessReadLabel.Click += new System.EventHandler(this.AccessReadLabel_Click);
             // 
             // MinReadLabel
             // 
@@ -363,9 +361,9 @@ namespace Commands
             this.label9.AutoSize = true;
             this.label9.Location = new System.Drawing.Point(20, 61);
             this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(42, 13);
+            this.label9.Size = new System.Drawing.Size(35, 13);
             this.label9.TabIndex = 10;
-            this.label9.Text = "Access";
+            this.label9.Text = "Name";
             // 
             // label10
             // 
@@ -722,14 +720,17 @@ namespace Commands
             // 
             // dataGridCommands
             // 
-            this.dataGridCommands.AutoGenerateColumns = false;
             this.dataGridCommands.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridCommands.DataSource = this.commandBindingSource;
+            this.dataGridCommands.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Column1,
+            this.Column2,
+            this.Column3});
             this.dataGridCommands.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.dataGridCommands.Location = new System.Drawing.Point(0, 462);
             this.dataGridCommands.Name = "dataGridCommands";
             this.dataGridCommands.Size = new System.Drawing.Size(958, 114);
             this.dataGridCommands.TabIndex = 22;
+            this.dataGridCommands.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridCommands_CellContentClick);
             // 
             // btnShowCmdDataGrid
             // 
@@ -750,6 +751,21 @@ namespace Commands
             this.btnExit.Text = "Exit";
             this.btnExit.UseVisualStyleBackColor = true;
             this.btnExit.Click += new System.EventHandler(this.btnExit_Click);
+            // 
+            // Column1
+            // 
+            this.Column1.HeaderText = "Name";
+            this.Column1.Name = "Column1";
+            // 
+            // Column2
+            // 
+            this.Column2.HeaderText = "Function";
+            this.Column2.Name = "Column2";
+            // 
+            // Column3
+            // 
+            this.Column3.HeaderText = "Units";
+            this.Column3.Name = "Column3";
             // 
             // Commands
             // 
@@ -857,6 +873,9 @@ namespace Commands
         private System.Windows.Forms.DataGridView dataGridCommands;
         private System.Windows.Forms.Button btnShowCmdDataGrid;
         private System.Windows.Forms.Button btnExit;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Column3;
     }
 }
 

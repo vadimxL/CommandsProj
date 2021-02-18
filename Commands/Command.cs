@@ -328,7 +328,14 @@ namespace Commands
 
         internal string GetReadAccess()
         {
-            return this.readAccess;
+            if(null == this.readAccess)
+            {
+                return "Name";
+            }
+            else
+            {
+                return this.readAccess;
+            }
         }
 
         internal string GetWriteAccess()
